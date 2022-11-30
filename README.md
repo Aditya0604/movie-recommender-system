@@ -14,17 +14,17 @@ Now, we can see that almost all of the films are in english language so as the d
 
 Now, we see that the overview is a critical feature and we have some missing values in it, but only 3 data is missing out of 5000 so we can easily drop that.
 
-We see that the genres is a list of dictionary, but we only need the genre out of it, eg. action, adventure , etc. So, we will extract the genre out of this list using literal_eval as below.
+We see that the genres is a list of dictionary, but we only need the genre out of it, eg. action, adventure , etc. So, we will extract the genre out of this list using literal_eval.
 
 We applied the convert function on the genre and keywords column to convert them in the required format.
 
-But we see that there is a problem, the cast has a lot of information, but while recommending a movie, we are only focussed on the top three actors in the movie. So we need to create a new function extract the name of only the top 3 cast from all the cast details. We define it as below:-
+But we see that there is a problem, the cast has a lot of information, but while recommending a movie, we are only focussed on the top three actors in the movie. So we need to create a new function extract the name of only the top 3 cast from all the cast details.
 
 Similarly from the crew, we only require the name of the director, because nobody recommends films on the basis of cameraman, production man, etc, only director is important, for this purpose also, we will defina a function to fetch the director.
 
 We want to eliminate the space between names to avoid discrepencies, eg san francisco should be same as sanfrancisco, so we would define a function for this and apply it to cast, crew, keywords and genres.
 
-As the overview feauture has text, we also need to convert it in the form of other columns, so we will convert this text into list of words that are used in the text as below:
+As the overview feauture has text, we also need to convert it in the form of other columns, so we will convert this text into list of words that are used in the text.
 
 Now, finally, we will combine all these modified data into a single feauture named tags.
 
@@ -36,13 +36,11 @@ now in our tags we will see that the word activity, activities are considered di
 
 So we will use PorterStemmer from nltk , which will replace all such words with thier root word, eg. actionable, actions, action will be replaced by action.
 
-Now, all the tags data are replaced with root word of all words and now can be converted into vectors so that we can define similarity among these vectors(i.e. similarity among movies)by some measure called cosine_similarity
-
-and this vectorization could be done using countvectorizer from sklearn library
+Now, all the tags data are replaced with root word of all words and now can be converted into vectors so that we can define similarity among these vectors(i.e. similarity among movies)by some measure called cosine_similarity and this vectorization could be done using countvectorizer from sklearn library
 
 By using stop words as english, we ignore the common words like : the, and, to, for, from ,etc...
 
-These similarity is the cosine_similarity measure of every movie with the other movie, the more is the score, the more similar they are
+These similarity is the cosine_similarity measure of every movie with the other movie, the more is the score, the more similar they are.
 
 This recommend is the final function which when run will give the top movies based on the similarity matrix above identifying the top 5 closest similarity scores of the film.
 
