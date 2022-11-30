@@ -45,3 +45,5 @@ These similarity is the cosine_similarity measure of every movie with the other 
 This recommend is the final function which when run will give the top movies based on the similarity matrix above identifying the top 5 closest similarity scores of the film.
 
 The project code is done now the below code is for running it on local network and depoyment so that after pickle save we can load the required files ahead
+
+referene taken from :- https://www.youtube.com/watch?v=1xtrIEwY_zY&ab_channel=CampusX
